@@ -1,0 +1,145 @@
+
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ARMAdilli | Energy Markets Analysis</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/theme/night.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { --accent: #00ff88; --orange: #ffaa00; --bg: #050505; }
+        .reveal { background-color: var(--bg); color: #efefef; font-family: 'Inter', sans-serif; }
+        .reveal h1 { font-size: 2.2em; color: white; text-transform: none; font-weight: 800; }
+        .reveal h2 { color: var(--accent); text-align: left; text-transform: none; font-weight: 700; border-left: 10px solid var(--accent); padding-left: 20px; margin-bottom: 20px; font-size: 1.6em; }
+        .reveal h3 { color: var(--orange); text-transform: none; font-weight: 600; text-align: left; margin-top: 0.2em; font-size: 1.2em; }
+        .reveal p, .reveal li { font-size: 0.75em; line-height: 1.3; text-align: left; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: center; }
+        .stat-card { background: #111; border: 1px solid #333; padding: 15px; border-radius: 10px; text-align: center; }
+        .box { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+        .img-frame { border: 1px solid #333; border-radius: 10px; overflow: hidden; background: #fff; padding: 5px; }
+        .img-frame img { display: block; width: 100%; height: auto; }
+        b, strong { color: var(--orange); }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-markdown>
+                <textarea data-template>
+
+# A Whirlwind Tour of <br><span style="color: var(--accent);">Energy Markets</span>
+### Forecasting • Interdependency • Capital Efficiency
+**Group:** ARMAdilli | **Date:** May 2026
+
+---
+
+## 1. Introduction & Context
+<div class="grid-2">
+    <div>
+        <h3>Market Environment</h3>
+        <p>The 2021-2026 period redefined energy stability. Markets are now in a <b>permanent stress regime</b>.</p>
+        <ul>
+            <li><strong>Geopolitical Shocks:</strong> Ukraine (2022) and Hormuz (2026).</li>
+            <li><strong>Objective:</strong> Shift to <b>Risk Management (VaR)</b>.</li>
+        </ul>
+    </div>
+    <div class="box">
+        <h4 style="color: var(--accent); margin:0; font-size:0.9em;">Operational Goal</h4>
+        <p>Optimize capital allocation by quantifying extreme loss quantiles.</p>
+    </div>
+</div>
+
+---
+
+## 2. Literature Review
+<div class="grid-2">
+    <div class="stat-card">
+        <i class="fa-solid fa-chart-line" style="font-size:2em; color:var(--accent);"></i>
+        <h3>Engle (2002)</h3>
+        <p><b>DCC-GARCH:</b> Modeling time-varying correlations during market coupling.</p>
+    </div>
+    <div class="stat-card">
+        <i class="fa-solid fa-diagram-project" style="font-size:2em; color:var(--accent);"></i>
+        <h3>Diebold & Yilmaz</h3>
+        <p><b>Connectedness:</b> Measuring directional volatility spillovers.</p>
+    </div>
+</div>
+
+---
+
+## 3. Data Selection
+<div class="grid-2">
+    <div>
+        <h3>Brent Crude Dynamics</h3>
+        <p>Primary benchmark showing clear <b>volatility clusters</b> during the 2022 and 2026 shocks.</p>
+        <p>Log returns exhibit <b>heavy tails</b>, making Gaussian assumptions invalid.</p>
+    </div>
+    <div class="img-frame">
+        <img src="img/plot brent.png" alt="Brent Price and Returns">
+    </div>
+</div>
+
+---
+
+## 4. Strategic Rationale
+<div class="grid-2">
+    <div class="box">
+        <h3>Fuel Switching</h3>
+        <p>Natural Gas (Henry Hub) price spikes drive demand toward oil distillates, creating non-linear <b>interdependence</b>.</p>
+    </div>
+    <div class="box">
+        <h3>Cointegration</h3>
+        <p>Heating Oil (HOIL) as a refined product follows Brent's long-term trend but adds refinery-specific shocks.</p>
+    </div>
+</div>
+
+---
+
+## 5. Data Treatment
+<div class="grid-2">
+    <div class="box" style="border-left: 5px solid var(--orange);">
+        <h3>The Rollover Challenge</h3>
+        <p>Futures exhibit artificial price jumps at contract expiration.</p>
+    </div>
+    <div>
+        <ul>
+            <li>Algorithmic <b>Roll Day</b> detection.</li>
+            <li>Technical returns set to <b>zero</b>.</li>
+            <li>Ensures GARCH models capture only economic shocks.</li>
+        </ul>
+    </div>
+</div>
+
+---
+
+## 6. Diagnostic Analysis
+<div class="grid-2">
+    <div>
+        <h3>Volatility Clustering</h3>
+        <p>ACF and PACF of <b>squared returns</b> confirm significant ARCH effects.</p>
+        <p><b>Engle ARCH Test:</b> Rejection of homoscedasticity (p < 0.001).</p>
+    </div>
+    <div class="img-frame">
+        <img src="img/squared returns.png" alt="ACF PACF Squared Returns">
+    </div>
+</div>
+
+                </textarea>
+            </section>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/markdown/markdown.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: 'c/t',
+            transition: 'fade',
+            width: 1100, height: 700,
+            plugins: [ RevealMarkdown ]
+        });
+    </script>
+</body>
+</html>          
