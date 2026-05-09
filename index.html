@@ -178,6 +178,118 @@
 
 <p style="font-size: 20px; line-height: 1.3;">To correctly interpret these estimates, one must consider the specific market regime: the <b>conflict in Iran</b> marks a period of extreme geopolitical instability, characterized by sudden <b>volatility spikes</b>, which has made price prediction a particularly complex challenge.</p>
 </div>
+
+---
+
+## 9. Diebold-Mariano Test
+<div class="content-area">
+    <div class="grid-2">
+        <div class="stat-card">
+            <i class="fa-solid fa-wave-square" style="font-size:2.5em; color:var(--accent); margin-bottom: 15px;"></i>
+            <h3>Univariate Models</h3>
+            <p>Forecasts 1-4</p>
+            <p style="font-family: monospace; font-size: 1.1em; color: white;">ARMA(1,1)-GARCH(1,1)</p>
+        </div>
+        <div class="stat-card">
+            <i class="fa-solid fa-diagram-project" style="font-size:2.5em; color:var(--accent); margin-bottom: 15px;"></i>
+            <h3>Multivariate Models</h3>
+            <p>Forecasts 5-7</p>
+            <p style="font-family: monospace; font-size: 1.1em; color: white;">VAR(1)-DCC(1,1)</p>
+        </div>
+    </div>
+
+    <div class="box" style="margin-top: 40px; border-left: 5px solid var(--accent);">
+        <p>In both cases we <b>fail to reject the null hypothesis</b> of equal predictive accuracy: any increase in modelling complexity does not translate into a <b>real predictive gain</b>.</p>
+    </div>
+</div>
+
+---
+
+## 10. Granger Causality Test
+<div class="content-area">
+<p>A robust <b>bidirectional causality</b> is observed between Brent and Heating Oil, while Natural Gas shows no significant causal relationship with the oil complex, confirming its <b>independent price dynamics</b>.</p>
+
+<div class="img-frame" style="width: 600px; height: 320px; margin: 15px auto;">
+<img src="img/granger_table.png" alt="granger_table">
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 10px;">
+<div class="stat-card" style="flex: 1; border-color: var(--accent);">
+<h3 style="margin: 0; text-align: center;">BRENT CRUDE</h3>
+<p style="text-align: center; margin: 0; font-size: 0.8em;">Raw Commodity</p>
+</div>
+
+<div style="flex: 1.5; text-align: center;">
+<p style="font-size: 0.7em; color: var(--accent); margin-bottom: 5px;">
+<i class="fa-solid fa-arrow-left"></i> Demand-pull effect
+</p>
+<div style="height: 1px; background: #444; width: 100%; margin: 10px 0;"></div>
+<p style="font-size: 0.7em; color: var(--orange); margin-top: 5px;">
+Classic cost-push mechanism <i class="fa-solid fa-arrow-right"></i>
+</p>
+</div>
+
+<div class="stat-card" style="flex: 1; border-color: var(--orange);">
+<h3 style="margin: 0; text-align: center;">HEATING OIL</h3>
+<p style="text-align: center; margin: 0; font-size: 0.8em;">Refined Product</p>
+</div>
+</div>
+</div>
+                      
+---
+
+## 11. IRF and FEVD
+<div class="content-area">
+<p style="text-align: center; color: var(--orange); font-weight: 700; margin-bottom: 0;">Two Cholesky orderings:</p>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 100px; position: relative; margin-bottom: 20px;">
+    <div style="position: absolute; top: -10px; width: 40%; height: 20px; border-top: 2px solid #333; border-left: 2px solid #333; border-right: 2px solid #333; z-index: 0;"></div>
+    
+    <div class="stat-card" style="padding: 10px 20px; border-color: var(--accent); min-width: 250px;">
+        <p style="margin: 0; font-family: monospace; text-align: center;">Brent <i class="fa-solid fa-arrow-right"></i> HO <i class="fa-solid fa-arrow-right"></i> Gas</p>
+    </div>
+    
+    <div class="stat-card" style="padding: 10px 20px; border-color: var(--accent); min-width: 250px;">
+        <p style="margin: 0; font-family: monospace; text-align: center;">HO <i class="fa-solid fa-arrow-right"></i> Brent <i class="fa-solid fa-arrow-right"></i> Gas</p>
+    </div>
+</div>
+
+<div class="grid-2" style="gap: 20px;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <div class="img-frame" style="height: 140px;"><img src="img/irf_brent.png" alt="irf_brent"></div>
+        <div class="img-frame" style="height: 140px;"><img src="img/irf_ho.png" alt="irf_ho"></div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <div class="img-frame" style="height: 140px;"><img src="img/fevd_brent.png" alt="fevd_brent"></div>
+        <div class="img-frame" style="height: 140px;"><img src="img/fevd_ho.png" alt="fevd_ho"></div>
+    </div>
+</div>
+
+<div class="box" style="margin-top: 20px; padding: 15px; border-top: 3px solid var(--orange);">
+<p style="font-size: 0.65em; line-height: 1.3; margin: 0;">
+The Brent-Heating Oil relationship reveals <b>instantaneous, bidirectional shock transmission</b> at lag 0 under both orderings. All significant responses dissipate within 1-2 lags. <b>Natural Gas</b> exhibits statistically insignificant impulse responses, providing empirical confirmation of <b>structural price decoupling</b>. The FEVD corroborates these findings.
+</p>
+</div>
+</div>
+                      
+---
+
+## 12. Correlation of Returns
+<div class="content-area">
+<p style="font-size: 0.72em; line-height: 1.3; margin-bottom: 10px;">
+The <b>Brent-Heating Oil correlation</b> remains persistently elevated throughout the sample, consistent with <b>Crack Spread theory</b>. This high correlation experienced a major structural break in 2022 due to the Russian invasion of Ukraine. This geopolitical event triggered a massive <b>short squeeze</b> that caused a large Crack Spread widening. Despite this temporary period of price disconnection, the correlation quickly returned to its historical average, reaffirming the fundamental link between crude oil and refined products.
+</p>
+
+<div class="img-frame" style="width: 750px; height: 280px; margin: 10px auto; background: #000;">
+<img src="img/dynamic_correlation.png" alt="dynamic_correlation">
+</div>
+
+<div class="box" style="padding: 15px; border-left: 5px solid var(--accent);">
+<p style="font-size: 0.72em; line-height: 1.3; margin: 0;">
+The correlation between <b>Natural Gas</b>, Brent, and Heating Oil remained near zero for most of the period, confirming the historical decoupling of these markets. However, starting in 2025, correlations surged due to the massive expansion of <b>U.S. LNG export capacity</b> and the 2026 closure of the <b>Strait of Hormuz</b>. Paradoxically, while global prices spiked, U.S. Henry Hub prices fell due to export bottlenecks, suggesting the increased correlation stems from <b>shared global information</b> rather than actual synchronized price movement.
+</p>
+</div>
+</div>
                 </textarea>
             </section>
         </div>
