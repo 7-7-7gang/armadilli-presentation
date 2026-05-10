@@ -1,5 +1,5 @@
 
-      <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,9 +15,27 @@
         .reveal h2 { color: var(--accent); text-align: left; text-transform: none; font-weight: 700; border-left: 10px solid var(--accent); padding-left: 20px; margin-bottom: 20px; font-size: 1.6em; }
         .reveal h3 { color: var(--orange); text-transform: none; font-weight: 600; text-align: left; margin-top: 0.2em; font-size: 1.2em; }
         .reveal p, .reveal li { font-size: 0.75em; line-height: 1.3; text-align: left; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: center; }
+        
+        /* MODIFICHE ALLA GRIGLIA E AI BOX */
+        .grid-2 { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 25px; 
+            align-items: stretch; /* Permette ai box di allungarsi (prima era center) */
+            grid-auto-rows: 1fr;  /* Forza l'altezza uguale per tutte le righe */
+        }
         .stat-card { background: #111; border: 1px solid #333; padding: 15px; border-radius: 10px; text-align: center; }
-        .box { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+        .box { 
+            background: rgba(255,255,255,0.03); 
+            padding: 15px; 
+            border-radius: 12px; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            display: flex;          /* Necessario per la struttura interna */
+            flex-direction: column; /* Mantiene il testo in verticale */
+            height: 100%;           /* Riempie tutto lo spazio della griglia */
+            box-sizing: border-box; /* Previene sbavature con il padding */
+        }
+        
         .img-frame { border: 1px solid #333; border-radius: 10px; overflow: hidden; background: #fff; padding: 5px; }
         .img-frame img { display: block; width: 100%; height: auto; }
         b, strong { color: var(--orange); }
