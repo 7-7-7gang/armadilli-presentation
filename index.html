@@ -15,34 +15,25 @@
         .reveal h2 { color: var(--accent); text-align: left; text-transform: none; font-weight: 700; border-left: 10px solid var(--accent); padding-left: 20px; margin-bottom: 20px; font-size: 1.6em; }
         .reveal h3 { color: var(--orange); text-transform: none; font-weight: 600; text-align: left; margin-top: 0.2em; font-size: 1.2em; }
         .reveal p, .reveal li { font-size: 0.75em; line-height: 1.3; text-align: left; }
-        
-        /* MODIFICHE ALLA GRIGLIA E AI BOX */
-        .grid-2 { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 25px; 
-            align-items: stretch;
-            grid-auto-rows: 1fr; 
-        }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; align-items: stretch; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: stretch; grid-auto-rows: 1fr; }
         .stat-card { background: #111; border: 1px solid #333; padding: 15px; border-radius: 10px; text-align: center; }
-        .box { 
-            background: rgba(255,255,255,0.03); 
-            padding: 15px; 
-            border-radius: 12px; 
-            border: 1px solid rgba(255,255,255,0.1); 
-            display: flex;         
-            flex-direction: column;
-            height: 100%;          
-            box-sizing: border-box; 
-        }
-        
+        .box { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; height: 100%; box-sizing: border-box; }
         .img-frame { border: 1px solid #333; border-radius: 10px; overflow: hidden; background: #fff; padding: 5px; }
         .img-frame img { display: block; width: 100%; height: auto; }
         b, strong { color: var(--orange); }
-        table { width: 100%; border-collapse: collapse; font-size: 0.7em; margin-top: 15px; color: #fff; }
-        th, td { border: 1px solid #444; padding: 8px; text-align: center; }
-        th { background-color: #222; color: var(--accent); }
+        .dm-container { display: flex; flex-direction: column; gap: 20px; margin-top: 30px; }
+        .dm-row { display: flex; align-items: center; background: rgba(255,255,255,0.02); border: 1px solid #222; border-radius: 15px; padding: 15px 25px; gap: 25px; }
+        .dm-icon { background: #e1ff95; color: #000; width: 60px; height: 60px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.5em; flex-shrink: 0; }
+        .dm-info { text-align: left; flex-grow: 1; }
+        .dm-info h4 { margin: 0; font-size: 0.9em !important; text-transform: uppercase; letter-spacing: 1px; color: white; }
+        .dm-info p { margin: 0 !important; font-size: 0.7em !important; color: #888; }
+        .dm-arrow { color: var(--accent); font-size: 1.2em; }
+        .dm-formula { background: #0a0a0a; border: 1px solid #222; padding: 15px 30px; border-radius: 12px; min-width: 300px; font-family: monospace; font-size: 0.9em; color: #ccc; text-align: center; }
+        .dm-conclusion { margin-top: 40px; text-align: left; font-size: 0.85em; line-height: 1.5; color: #efefef; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.6em; }
+        th, td { border: 1px solid #333; padding: 10px; text-align: center; }
+        th { background: #111; color: var(--accent); }
     </style>
 </head>
 <body>
@@ -154,7 +145,7 @@
 <div class="grid-2">
     <div class="box">
         <h3>Forecasting Horizon</h3>
-        <p><b>One-step ahead forecasts</b> (except for the last one) of the Friday closing price of Brent crude oil futures.</p>
+        <p><b>One-step ahead forecasts</b> of the Friday closing price of Brent crude oil futures.</p>
     </div>
     <div class="box">
         <h3>Methodology</h3>
@@ -162,11 +153,11 @@
     </div>
     <div class="box">
         <h3>Data Splitting</h3>
-        <p>In-sample backtest: <b>80%</b> of the observations in the training sample and <b>20%</b> in the testing sample.</p>
+        <p>In-sample backtest: <b>80%</b> training, <b>20%</b> testing.</p>
     </div>
     <div class="box">
         <h3>Parameter Update</h3>
-        <p>Re-estimation of the parameters every <b>10 days</b>.</p>
+        <p>Re-estimation every <b>10 days</b>.</p>
     </div>
 </div>
 
@@ -174,178 +165,141 @@
 
 ## 8. Forecast Performance Evaluation
 <div class="content-area">
-<p>Performance was assessed on both market direction (<b>DAC</b>) and quantitative error (<b>ME, MAE, RMSE</b>).</p>
-
-<div class="grid-2" style="margin: 30px 0;">
-<div class="img-frame">
-<img src="img/DAC.png" alt="DAC">
+<div class="grid-2">
+<div class="img-frame"><img src="img/DAC.png" alt="DAC"></div>
+<div class="img-frame"><img src="img/ME_MAE.png" alt="ME_MAE"></div>
 </div>
-<div class="img-frame">
-<img src="img/ME_MAE.png" alt="ME_MAE">
-</div>
-</div>
-
-<p>One can detect some differences between <b>models 1-4</b>, <b>model 5</b> and <b>models 6-7</b>, due to different model specifications.</p>
-</div>
-
----
-
-## Forecast Performance Evaluation
-<div class="content-area">
-<p>This line chart provides immediate visual confirmation of the dynamics previously quantified: it illustrates the <b>point spread</b> between the Brent prices estimated by the models (in <b>blue</b>) and the actual values realized on the market (in <b>red</b>).</p>
-
-<div class="img-frame" style="width: 850px; height: 350px; margin: 20px auto;">
-<img src="img/price_comparison_dynamic_labels.png" alt="price_comparison" style="object-fit: cover;">
-</div>
-
-<p style="font-size: 20px; line-height: 1.3;">To correctly interpret these estimates, one must consider the specific market regime: the <b>conflict in Iran</b> marks a period of extreme geopolitical instability, characterized by sudden <b>volatility spikes</b>, which has made price prediction a particularly complex challenge.</p>
 </div>
 
 ---
 
 ## 9. Diebold-Mariano Test
-<div class="content-area">
-<div class="grid-2">
-<div class="stat-card">
-<i class="fa-solid fa-wave-square" style="font-size:2.5em; color:var(--accent); margin-bottom: 15px;"></i>
-<h3>Univariate Models</h3>
-<p>Forecasts 1-4</p>
-<p style="font-family: monospace; font-size: 1.1em; color: white;">ARMA(1,1)-GARCH(1,1)</p>
+<div class="dm-container">
+<div class="dm-row">
+<div class="dm-icon"><i class="fa-solid fa-chart-line"></i></div>
+<div class="dm-info"><h4>Univariate</h4><p>Forecasts 1-4</p></div>
+<div class="dm-formula">ARMA-GARCH</div>
 </div>
-<div class="stat-card">
-<i class="fa-solid fa-diagram-project" style="font-size:2.5em; color:var(--accent); margin-bottom: 15px;"></i>
-<h3>Multivariate Models</h3>
-<p>Forecasts 5-7</p>
-<p style="font-family: monospace; font-size: 1.1em; color: white;">VAR(1)-DCC(1,1)</p>
+<div class="dm-row">
+<div class="dm-icon"><i class="fa-solid fa-network-wired"></i></div>
+<div class="dm-info"><h4>Multivariate</h4><p>Forecasts 5-7</p></div>
+<div class="dm-formula">VAR-DCC</div>
 </div>
 </div>
-
-<div class="box" style="margin-top: 40px; border-left: 5px solid var(--accent);">
-<p>In both cases we <b>fail to reject the null hypothesis</b> of equal predictive accuracy: any increase in modelling complexity does not translate into a <b>real predictive gain</b>.</p>
-</div>
-</div>
+<div class="dm-conclusion">Fail to reject null: No real predictive gain from complexity.</div>
 
 ---
 
-## 10. Granger Causality Test
-<div class="content-area">
-<p>A robust <b>bidirectional causality</b> is observed between Brent and Heating Oil, while Natural Gas shows no significant causal relationship with the oil complex, confirming its <b>independent price dynamics</b>.</p>
+## 10. Granger Causality
+<div class="img-frame" style="max-width:600px; margin:auto;"><img src="img/granger_table.png"></div>
 
-<div class="img-frame" style="width: 600px; height: 320px; margin: 15px auto;">
-<img src="img/granger_table.png" alt="granger_table">
-</div>
-
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 10px;">
-<div class="stat-card" style="flex: 1; border-color: var(--accent);">
-<h3 style="margin: 0; text-align: center;">BRENT CRUDE</h3>
-<p style="text-align: center; margin: 0; font-size: 0.8em;">Raw Commodity</p>
-</div>
-
-<div style="flex: 1.5; text-align: center;">
-<p style="font-size: 0.7em; color: var(--accent); margin-bottom: 5px;">
-<i class="fa-solid fa-arrow-left"></i> Demand-pull effect
-</p>
-<div style="height: 1px; background: #444; width: 100%; margin: 10px 0;"></div>
-<p style="font-size: 0.7em; color: var(--orange); margin-top: 5px;">
-Classic cost-push mechanism <i class="fa-solid fa-arrow-right"></i>
-</p>
-</div>
-
-<div class="stat-card" style="flex: 1; border-color: var(--orange);">
-<h3 style="margin: 0; text-align: center;">HEATING OIL</h3>
-<p style="text-align: center; margin: 0; font-size: 0.8em;">Refined Product</p>
-</div>
-</div>
-</div>
-                      
 ---
 
 ## 11. IRF and FEVD
-<div class="content-area">
-<p style="text-align: center; color: var(--orange); font-weight: 700; margin-bottom: 0;">Two Cholesky orderings:</p>
-
-<div style="display: flex; justify-content: center; align-items: center; gap: 100px; position: relative; margin-bottom: 20px;">
-<div style="position: absolute; top: -10px; width: 40%; height: 20px; border-top: 2px solid #333; border-left: 2px solid #333; border-right: 2px solid #333; z-index: 0;"></div>
-    
-<div class="stat-card" style="padding: 10px 20px; border-color: var(--accent); min-width: 250px;">
-<p style="margin: 0; font-family: monospace; text-align: center;">Brent <i class="fa-solid fa-arrow-right"></i> HO <i class="fa-solid fa-arrow-right"></i> Gas</p>
-</div>
-    
-<div class="stat-card" style="padding: 10px 20px; border-color: var(--accent); min-width: 250px;">
-<p style="margin: 0; font-family: monospace; text-align: center;">HO <i class="fa-solid fa-arrow-right"></i> Brent <i class="fa-solid fa-arrow-right"></i> Gas</p>
-</div>
+<div class="grid-2">
+<div class="img-frame"><img src="img/irf_brent.png"></div>
+<div class="img-frame"><img src="img/fevd_brent.png"></div>
 </div>
 
-<div class="grid-2" style="gap: 20px;">
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-<div class="img-frame" style="height: 140px;"><img src="img/irf_brent.png" alt="irf_brent"></div>
-<div class="img-frame" style="height: 140px;"><img src="img/irf_ho.png" alt="irf_ho"></div>
-</div>
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-<div class="img-frame" style="height: 140px;"><img src="img/fevd_brent.png" alt="fevd_brent"></div>
-<div class="img-frame" style="height: 140px;"><img src="img/fevd_ho.png" alt="fevd_ho"></div>
-</div>
-</div>
-
-<div class="box" style="margin-top: 20px; padding: 15px; border-top: 3px solid var(--orange);">
-<p style="font-size: 0.65em; line-height: 1.3; margin: 0;">
-The Brent-Heating Oil relationship reveals <b>instantaneous, bidirectional shock transmission</b> at lag 0 under both orderings. All significant responses dissipate within 1-2 lags. <b>Natural Gas</b> exhibits statistically insignificant impulse responses, providing empirical confirmation of <b>structural price decoupling</b>. The FEVD corroborates these findings.
-</p>
-</div>
-</div>
-                      
 ---
 
 ## 12. Correlation of Returns
-<div class="content-area">
-<p style="font-size: 0.72em; line-height: 1.3; margin-bottom: 10px;">
-The <b>Brent-Heating Oil correlation</b> remains persistently elevated throughout the sample, consistent with <b>Crack Spread theory</b>. This high correlation experienced a major structural break in 2022 due to the Russian invasion of Ukraine. This geopolitical event triggered a massive <b>short squeeze</b> that caused a large Crack Spread widening. Despite this temporary period of price disconnection, the correlation quickly returned to its historical average, reaffirming the fundamental link between crude oil and refined products.
-</p>
-
-<div class="img-frame" style="width: 750px; height: 280px; margin: 10px auto; background: #000;">
-<img src="img/dynamic_correlation.png" alt="dynamic_correlation">
-</div>
-
-<div class="box" style="padding: 15px; border-left: 5px solid var(--accent);">
-<p style="font-size: 0.72em; line-height: 1.3; margin: 0;">
-The correlation between <b>Natural Gas</b>, Brent, and Heating Oil remained near zero for most of the period, confirming the historical decoupling of these markets. However, starting in 2025, correlations surged due to the massive expansion of <b>U.S. LNG export capacity</b> and the 2026 closure of the <b>Strait of Hormuz</b>. Paradoxically, while global prices spiked, U.S. Henry Hub prices fell due to export bottlenecks, suggesting the increased correlation stems from <b>shared global information</b> rather than actual synchronized price movement.
-</p>
-</div>
-</div>
+<div class="img-frame" style="max-width:700px; margin:auto;"><img src="img/dynamic_correlation.png"></div>
 
 ---
 
 ## 13. Conditional Volatility Analysis
 <div class="grid-2">
     <div>
-        <h3>Co-movements and Regimes</h3>
-        <p>Brent and Heating Oil show <b>almost perfect co-movement</b>, reacting simultaneously to shocks.</p>
-        <ul>
-            <li>Natural Gas follows an idiosyncratic trajectory with higher baseline volatility.</li>
-            <li>2026 Peak: <b>Winter Storm Fern</b> and supply crisis.</li>
-        </ul>
+        <h3>Co-movements</h3>
+        <p>Brent and Heating Oil show almost perfect co-movement.</p>
     </div>
     <div class="img-frame">
-        <img src="img/conditional_volatility.png" alt="Conditional Volatility Comparison">
+        <img src="img/conditional_volatility.png">
     </div>
 </div>
 
 ---
 
-## 14. Pairwise Spillover Analysis
-<div class="content-area">
-    <p>Bilateral risk transmission highlights periods of alternating dominance over time.</p>
-    <div class="grid-3" style="margin-top: 20px;">
-        <div class="img-frame"><img src="img/dy brent gas.png" alt="Brent vs Gas"></div>
-        <div class="img-frame"><img src="img/dy brent ho.png" alt="Brent vs HO"></div>
-        <div class="img-frame"><img src="img/dy ho gas.png" alt="HO vs Gas"></div>
-    </div>
+## 14. Pairwise Spillover
+<div class="grid-3">
+    <div class="img-frame"><img src="img/dy brent gas.png"></div>
+    <div class="img-frame"><img src="img/dy brent ho.png"></div>
+    <div class="img-frame"><img src="img/dy ho gas.png"></div>
 </div>
 
 ---
 
-## 15. Net Spillover Analysis
-<div class="content-area">
-    <p>Identifying the net transmitters of instability within the energy system.</p>
-    <div class="grid-3" style="margin-top: 20px;">
-        <div class="img-frame"><img src="img/dy brent.png" alt="Brent Net">
+## 15. Net Spillover
+<div class="grid-3">
+    <div class="img-frame"><img src="img/dy brent.png"></div>
+    <div class="img-frame"><img src="img/dy ho.png"></div>
+    <div class="img-frame"><img src="img/dy gas.png"></div>
+</div>
+
+---
+
+## 16. Spillover Table
+<table>
+    <tr><th>Asset</th><th>Brent</th><th>HO</th><th>Gas</th><th>FROM</th></tr>
+    <tr><td><b>Brent</b></td><td>67.08</td><td>32.90</td><td>0.02</td><td>32.92</td></tr>
+    <tr><td><b>HO</b></td><td>29.07</td><td>70.25</td><td>0.68</td><td>29.75</td></tr>
+    <tr><td><b>Gas</b></td><td>0.02</td><td>0.71</td><td>99.27</td><td>0.73</td></tr>
+    <tr><td><b>TO</b></td><td>29.09</td><td>33.61</td><td>0.69</td><td style="color:var(--accent);">TCI: 21.13%</td></tr>
+</table>
+
+---
+
+## 17. Value at Risk (VaR)
+<div class="box">
+    <p>Objective: Test if multivariate info optimizes risk forecasting.</p>
+</div>
+
+---
+
+## 18. Backtesting
+<table>
+    <tr><th>Model</th><th>Kupiec</th><th>Christoffersen</th><th>DQT</th></tr>
+    <tr><td>Univariate</td><td style="color:var(--accent);">Passed</td><td style="color:var(--accent);">Passed</td><td style="color:var(--accent);">Passed</td></tr>
+    <tr><td>Two-Step</td><td style="color:var(--accent);">Passed</td><td style="color:var(--accent);">Passed</td><td style="color:var(--accent);">Passed</td></tr>
+</table>
+
+---
+
+## 19. Capital Efficiency
+<table>
+    <tr><th>Model</th><th>Avg Daily VaR</th><th>Savings</th></tr>
+    <tr><td>Univariate</td><td>-3.921%</td><td>-</td></tr>
+    <tr><td>Two-Step</td><td>-3.848%</td><td style="color:var(--accent);">+0.073 pp</td></tr>
+</table>
+
+---
+
+## 20. VaR Exceptions
+<div class="img-frame"><img src="img/Value at Risk.png"></div>
+
+---
+
+## 21. Final Conclusions
+<div class="grid-2">
+    <div class="box"><h3>Key Findings</h3><p>Complexity = Efficiency.</p></div>
+    <div class="box"><h3>Outlook</h3><p>Machine Learning & LNG.</p></div>
+</div>
+
+                </textarea>
+            </section>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/markdown/markdown.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: 'c/t',
+            transition: 'fade',
+            width: 1100, height: 700,
+            plugins: [ RevealMarkdown ]
+        });
+    </script>
+</body>
+</html>
