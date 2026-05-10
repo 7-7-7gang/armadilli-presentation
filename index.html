@@ -21,97 +21,28 @@
             display: grid; 
             grid-template-columns: 1fr 1fr; 
             gap: 25px; 
-            align-items: stretch; /* Permette ai box di allungarsi (prima era center) */
-            grid-auto-rows: 1fr;  /* Forza l'altezza uguale per tutte le righe */
+            align-items: stretch;
+            grid-auto-rows: 1fr; 
         }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; align-items: stretch; }
         .stat-card { background: #111; border: 1px solid #333; padding: 15px; border-radius: 10px; text-align: center; }
         .box { 
             background: rgba(255,255,255,0.03); 
             padding: 15px; 
             border-radius: 12px; 
             border: 1px solid rgba(255,255,255,0.1); 
-            display: flex;          /* Necessario per la struttura interna */
-            flex-direction: column; /* Mantiene il testo in verticale */
-            height: 100%;           /* Riempie tutto lo spazio della griglia */
-            box-sizing: border-box; /* Previene sbavature con il padding */
+            display: flex;         
+            flex-direction: column;
+            height: 100%;          
+            box-sizing: border-box; 
         }
+        
         .img-frame { border: 1px solid #333; border-radius: 10px; overflow: hidden; background: #fff; padding: 5px; }
         .img-frame img { display: block; width: 100%; height: auto; }
         b, strong { color: var(--orange); }
-        /* Stili specifici per il Diebold-Mariano Test */
-.dm-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.dm-row {
-    display: flex;
-    align-items: center;
-    background: rgba(255,255,255,0.02); /* Sfondo leggerissimo */
-    border: 1px solid #222;
-    border-radius: 15px;
-    padding: 15px 25px;
-    gap: 25px;
-}
-
-.dm-icon {
-    background: #e1ff95; /* Il verde acido della foto */
-    color: #000;
-    width: 60px;
-    height: 60px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5em;
-    flex-shrink: 0;
-}
-
-.dm-info {
-    text-align: left;
-    flex-grow: 1;
-}
-
-.dm-info h4 {
-    margin: 0;
-    font-size: 0.9em !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: white;
-}
-
-.dm-info p {
-    margin: 0 !important;
-    font-size: 0.7em !important;
-    color: #888;
-}
-
-.dm-arrow {
-    color: var(--accent);
-    font-size: 1.2em;
-}
-
-.dm-formula {
-    background: #0a0a0a; /* Sfondo scuro per la formula */
-    border: 1px solid #222;
-    padding: 15px 30px;
-    border-radius: 12px;
-    min-width: 300px;
-    font-family: monospace;
-    font-size: 0.9em;
-    color: #ccc;
-    text-align: center;
-}
-
-.dm-conclusion {
-    margin-top: 40px;
-    text-align: left;
-    font-size: 0.85em;
-    line-height: 1.5;
-    color: #efefef;
-}
+        table { width: 100%; border-collapse: collapse; font-size: 0.7em; margin-top: 15px; color: #fff; }
+        th, td { border: 1px solid #444; padding: 8px; text-align: center; }
+        th { background-color: #222; color: var(--accent); }
     </style>
 </head>
 <body>
@@ -238,7 +169,7 @@
         <p>Re-estimation of the parameters every <b>10 days</b>.</p>
     </div>
 </div>
-                    
+
 ---
 
 ## 8. Forecast Performance Evaluation
@@ -273,43 +204,26 @@
 ---
 
 ## 9. Diebold-Mariano Test
-
-<div class="dm-container">
-<div class="dm-row">
-<div class="dm-icon">
-<i class="fa-solid fa-chart-line"></i>
+<div class="content-area">
+<div class="grid-2">
+<div class="stat-card">
+<i class="fa-solid fa-wave-square" style="font-size:2.5em; color:var(--accent); margin-bottom: 15px;"></i>
+<h3>Univariate Models</h3>
+<p>Forecasts 1-4</p>
+<p style="font-family: monospace; font-size: 1.1em; color: white;">ARMA(1,1)-GARCH(1,1)</p>
 </div>
-<div class="dm-info">
-<h4>Univariate Models</h4>
-<p>Forecasts 1 - 4</p>
-</div>
-<div class="dm-arrow">
-<i class="fa-solid fa-arrow-right"></i>
-</div>
-<div class="dm-formula">
-ARMA(1,1)-GARCH(1,1)
-</div>
-</div>
-<div class="dm-row">
-<div class="dm-icon">
-<i class="fa-solid fa-network-wired"></i>
-</div>
-<div class="dm-info">
-<h4>Multivariate Models</h4>
-<p>Forecasts 5 - 7</p>
-</div>
-<div class="dm-arrow">
-<i class="fa-solid fa-arrow-right"></i>
-</div>
-<div class="dm-formula">
-VAR(1)-DCC(1,1)
-</div>
+<div class="stat-card">
+<i class="fa-solid fa-diagram-project" style="font-size:2.5em; color:var(--accent); margin-bottom: 15px;"></i>
+<h3>Multivariate Models</h3>
+<p>Forecasts 5-7</p>
+<p style="font-family: monospace; font-size: 1.1em; color: white;">VAR(1)-DCC(1,1)</p>
 </div>
 </div>
 
-<div class="dm-conclusion">
-In both cases we <b>fail to reject the null hypothesis</b> of equal predictive accuracy: any increase in modelling complexity does not translate into a <b>real predictive gain</b>.
-</div>                    
+<div class="box" style="margin-top: 40px; border-left: 5px solid var(--accent);">
+<p>In both cases we <b>fail to reject the null hypothesis</b> of equal predictive accuracy: any increase in modelling complexity does not translate into a <b>real predictive gain</b>.</p>
+</div>
+</div>
 
 ---
 
@@ -398,21 +312,7 @@ The correlation between <b>Natural Gas</b>, Brent, and Heating Oil remained near
 </p>
 </div>
 </div>
-               </textarea>
-            </section>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/markdown/markdown.js"></script>
-    <script>
-        Reveal.initialize({
-            hash: true,
-            slideNumber: 'c/t',
-            transition: 'fade',
-            width: 1100, height: 700,
-            plugins: [ RevealMarkdown ]
-        });
-    </script>
+
 ---
 
 ## 13. Conditional Volatility Analysis
@@ -448,117 +348,4 @@ The correlation between <b>Natural Gas</b>, Brent, and Heating Oil remained near
 <div class="content-area">
     <p>Identifying the net transmitters of instability within the energy system.</p>
     <div class="grid-3" style="margin-top: 20px;">
-        <div class="img-frame"><img src="img/dy brent.png" alt="Brent Net"></div>
-        <div class="img-frame"><img src="img/dy ho.png" alt="HO Net"></div>
-        <div class="img-frame"><img src="img/dy gas.png" alt="Gas Net"></div>
-    </div>
-</div>
-
----
-
-## 16. Diebold-Yilmaz Spillover Table
-<div class="content-area">
-    <table>
-        <tr>
-            <th>Asset</th><th>Brent</th><th>HO</th><th>Gas</th><th>FROM</th>
-        </tr>
-        <tr><td><b>Brent</b></td><td>67.08</td><td>32.90</td><td>0.02</td><td>32.92</td></tr>
-        <tr><td><b>HO</b></td><td>29.07</td><td>70.25</td><td>0.68</td><td>29.75</td></tr>
-        <tr><td><b>Gas</b></td><td>0.02</td><td>0.71</td><td>99.27</td><td>0.73</td></tr>
-        <tr>
-            <td><b>TO</b></td><td>29.09</td><td>33.61</td><td>0.69</td>
-            <td style="color:var(--accent);"><b>TCI: 21.13%</b></td>
-        </tr>
-        <tr>
-            <td><b>NET</b></td><td style="color:red;">-3.83</td><td style="color:var(--accent);">3.86</td><td style="color:red;">-0.03</td><td></td>
-        </tr>
-    </table>
-    <div class="box" style="margin-top: 20px;">
-        <p><b>Heating Oil</b> unexpectedly emerges as the dominant transmitter (+3.86%), inverting the conventional crude-to-refined hierarchy.</p>
-    </div>
-</div>
-
----
-
-## 17. Value at Risk (VaR) of Brent Crude
-<div class="grid-2">
-    <div class="stat-card">
-        <h3>Univariate</h3>
-        <p style="font-family: monospace;">ARMA(6,6) + sGARCH(1,1) SGED</p>
-    </div>
-    <div class="stat-card">
-        <h3>Multivariate</h3>
-        <p style="font-family: monospace;">VAR(2) + sGARCH(1,1) SGED</p>
-    </div>
-</div>
-<div class="box" style="margin-top: 30px;">
-    <p style="text-align:center;">Objective: Test if the multivariate informational infrastructure optimizes risk forecasting compared to an isolated approach.</p>
-</div>
-
----
-
-## 18. Statistical Validation (Backtesting)
-<div class="grid-3">
-    <div class="stat-card"><h3>Kupiec</h3><p>Frequency of violations.</p></div>
-    <div class="stat-card"><h3>Christoffersen</h3><p>Absence of clustering.</p></div>
-    <div class="stat-card"><h3>DQT</h3><p>Information set independence.</p></div>
-</div>
-<table>
-    <tr><th>Model</th><th>Kupiec</th><th>Christoffersen</th><th>DQT</th></tr>
-    <tr><td>Univariate</td><td style="color:var(--accent);">Passed</td><td style="color:var(--accent);">Passed</td><td style="color:var(--accent);">Passed</td></tr>
-    <tr><td>Two-Step</td><td style="color:var(--accent);">Passed</td><td style="color:var(--accent);">Passed</td><td style="color:var(--accent);">Passed</td></tr>
-</table>
-
----
-
-## 19. Capital Efficiency
-<div class="content-area">
-    <p>The multivariate model allows for a reduction in prudential reserves without compromising statistical reliability.</p>
-    <table>
-        <tr><th>Model</th><th>Average Daily VaR</th><th>Loss (10k €)</th></tr>
-        <tr><td>Univariate</td><td>-3.921%</td><td>-384 €</td></tr>
-        <tr><td>Two-Step</td><td>-3.848%</td><td>-377 €</td></tr>
-        <tr style="background: rgba(0,255,136,0.1);">
-            <td style="color:var(--accent);"><b>Savings</b></td>
-            <td style="color:var(--accent);"><b>0.073 pp</b></td>
-            <td style="color:var(--accent);"><b>+7 € / day</b></td>
-        </tr>
-    </table>
-</div>
-
----
-
-## 20. Dynamic Graphical Analysis of Exceptions
-<div class="content-area">
-    <div class="img-frame" style="width: 850px; margin: 0 auto;">
-        <img src="img/Value at Risk.png" alt="Dynamic Graphical Analysis">
-    </div>
-    <div class="box" style="margin-top: 15px;">
-        <p style="font-size: 0.7em; margin: 0;">The <b>Two-Step model (Solid Blue Line)</b> is more responsive during stress regimes, anticipating volatility signals from correlated assets before they fully reflect in Brent alone.</p>
-    </div>
-</div>
-
----
-
-## 21. Final Conclusions
-<div class="grid-2">
-    <div class="box">
-        <h3>Key Findings</h3>
-        <ul>
-            <li>Complexity ≠ Price Prediction gain.</li>
-            <li>Complexity = Risk Management efficiency.</li>
-            <li>Heating oil drives upstream volatility during crises.</li>
-        </ul>
-    </div>
-    <div class="box">
-        <h3>Outlook</h3>
-        <ul>
-            <li>LNG Globalization impact (e.g., JKM, TTF).</li>
-            <li>Machine Learning (LSTM-GARCH).</li>
-            <li>NLP for geopolitical sentiment analysis.</li>
-        </ul>
-    </div>
-</div>
-</body>
-</html>
-</html> 
+        <div class="img-frame"><img src="img/dy brent.png" alt="Brent Net">
