@@ -35,10 +35,83 @@
             height: 100%;           /* Riempie tutto lo spazio della griglia */
             box-sizing: border-box; /* Previene sbavature con il padding */
         }
-        
         .img-frame { border: 1px solid #333; border-radius: 10px; overflow: hidden; background: #fff; padding: 5px; }
         .img-frame img { display: block; width: 100%; height: auto; }
         b, strong { color: var(--orange); }
+        /* Stili specifici per il Diebold-Mariano Test */
+.dm-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.dm-row {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.02); /* Sfondo leggerissimo */
+    border: 1px solid #222;
+    border-radius: 15px;
+    padding: 15px 25px;
+    gap: 25px;
+}
+
+.dm-icon {
+    background: #e1ff95; /* Il verde acido della foto */
+    color: #000;
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    flex-shrink: 0;
+}
+
+.dm-info {
+    text-align: left;
+    flex-grow: 1;
+}
+
+.dm-info h4 {
+    margin: 0;
+    font-size: 0.9em !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+}
+
+.dm-info p {
+    margin: 0 !important;
+    font-size: 0.7em !important;
+    color: #888;
+}
+
+.dm-arrow {
+    color: var(--accent);
+    font-size: 1.2em;
+}
+
+.dm-formula {
+    background: #0a0a0a; /* Sfondo scuro per la formula */
+    border: 1px solid #222;
+    padding: 15px 30px;
+    border-radius: 12px;
+    min-width: 300px;
+    font-family: monospace;
+    font-size: 0.9em;
+    color: #ccc;
+    text-align: center;
+}
+
+.dm-conclusion {
+    margin-top: 40px;
+    text-align: left;
+    font-size: 0.85em;
+    line-height: 1.5;
+    color: #efefef;
+}
     </style>
 </head>
 <body>
@@ -165,6 +238,7 @@
         <p>Re-estimation of the parameters every <b>10 days</b>.</p>
     </div>
 </div>
+                    
 ---
 
 ## 8. Forecast Performance Evaluation
@@ -199,25 +273,46 @@
 ---
 
 ## 9. Diebold-Mariano Test
-<div class="content-area">
-<div class="grid-2">
-<div class="stat-card">
-<i class="fa-solid fa-wave-square" style="font-size:2.5em; color:var(--accent); margin-bottom: 15px;"></i>
-<h3>Univariate Models</h3>
-<p>Forecasts 1-4</p>
-<p style="font-family: monospace; font-size: 1.1em; color: white;">ARMA(1,1)-GARCH(1,1)</p>
-</div>
-<div class="stat-card">
-<i class="fa-solid fa-diagram-project" style="font-size:2.5em; color:var(--accent); margin-bottom: 15px;"></i>
-<h3>Multivariate Models</h3>
-<p>Forecasts 5-7</p>
-<p style="font-family: monospace; font-size: 1.1em; color: white;">VAR(1)-DCC(1,1)</p>
-</div>
+
+<div class="dm-container">
+    
+    <div class="dm-row">
+        <div class="dm-icon">
+            <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <div class="dm-info">
+            <h4>Univariate Models</h4>
+            <p>Forecasts 1 - 4</p>
+        </div>
+        <div class="dm-arrow">
+            <i class="fa-solid fa-arrow-right"></i>
+        </div>
+        <div class="dm-formula">
+            ARMA(1,1)-GARCH(1,1)
+        </div>
+    </div>
+
+    <div class="dm-row">
+        <div class="dm-icon">
+            <i class="fa-solid fa-network-wired"></i>
+        </div>
+        <div class="dm-info">
+            <h4>Multivariate Models</h4>
+            <p>Forecasts 5 - 7</p>
+        </div>
+        <div class="dm-arrow">
+            <i class="fa-solid fa-arrow-right"></i>
+        </div>
+        <div class="dm-formula">
+            VAR(1)-DCC(1,1)
+        </div>
+    </div>
+
 </div>
 
-<div class="box" style="margin-top: 40px; border-left: 5px solid var(--accent);">
-<p>In both cases we <b>fail to reject the null hypothesis</b> of equal predictive accuracy: any increase in modelling complexity does not translate into a <b>real predictive gain</b>.</p>
-</div>
+<div class="dm-conclusion">
+    In both cases we <b>fail to reject the null hypothesis</b> of equal predictive accuracy: 
+    any increase in modelling complexity does not translate into a <b>real predictive gain</b>.
 </div>
 
 ---
